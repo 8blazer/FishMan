@@ -18,6 +18,11 @@ public class Breathing : MonoBehaviour
             oxygen = 30;
             inWater = false;
         }
+        else if (SceneManager.GetActiveScene().name == "SecondLevel")
+        {
+            oxygen = 30;
+            inWater = true;
+        }
         animator = GetComponent<Animator>();
     }
 
@@ -77,6 +82,14 @@ public class Breathing : MonoBehaviour
         {
             inWater = true;
             timer = 0;
+            if (SceneManager.GetActiveScene().name == "SecondLevel")
+            {
+                SceneManager.LoadScene("Win");
+            }
+        }
+        if (collision.name == "NoWater")
+        {
+            inWater = false;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -84,6 +97,10 @@ public class Breathing : MonoBehaviour
         if (collision.tag == "Water")
         {
             inWater = false;
+        }
+        if (collision.name == "NoWater")
+        {
+            inWater = true;
         }
     }
 }

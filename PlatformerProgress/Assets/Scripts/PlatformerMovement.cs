@@ -59,6 +59,10 @@ public class PlatformerMovement : MonoBehaviour
             {
                 GetComponent<Animator>().SetInteger("y", 0);
             }
+            if (transform.position.y < -12)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
         /*if (inWater == false)
         {
@@ -121,6 +125,13 @@ public class PlatformerMovement : MonoBehaviour
             inWater = false;
         }
     }*/
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "Teleporter")
+        {
+            SceneManager.LoadScene("SecondLevel");
+        }
+    }
 }
 
 
